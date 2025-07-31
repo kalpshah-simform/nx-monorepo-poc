@@ -4,7 +4,13 @@
   "files": [],
   "references": [
     {
-      "path": "./apps"
+      "path": "./libs/shared/ui"
+    },
+    {
+      "path": "./apps/web-app"
+    },
+    {
+      "path": "./apps/admin-app"
     }
   ]
 }
