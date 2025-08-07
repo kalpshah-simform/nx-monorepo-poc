@@ -11,6 +11,9 @@
     },
     {
       "path": "./apps/admin-app"
+    },
+    {
+      "path": "./libs/mylib"
     }
   ]
 }

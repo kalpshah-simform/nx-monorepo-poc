@@ -1,7 +1,8 @@
 // Uncomment this line to use CSS modules
 // import styles from './app.module.css';
 import NxWelcome from './nx-welcome';
-import { Ui } from '@./ui'; // Import from the shared UI library
+import { Ui } from '@mycompany/shared-ui'; // Import from the shared UI library
+import ComponentsDemo from './components-demo';
 
 import { Route, Routes, Link } from 'react-router-dom';
 
@@ -18,11 +19,21 @@ export function App() {
         <Link to="/dashboard" style={{ marginRight: '1rem' }}>
           Dashboard
         </Link>
+        <Link to="/components" style={{ marginRight: '1rem' }}>
+          Components Demo
+        </Link>
       </nav>
 
       <div style={{ padding: '1rem' }}>
-        <NxWelcome title="@./web-app" />
-        <Ui /> {/* Use the shared UI component */}
+        <Routes>
+          <Route path="/" element={
+            <div>
+              <NxWelcome title="@./web-app" />
+              <Ui /> {/* Use the shared UI component */}
+            </div>
+          } />
+          <Route path="/components" element={<ComponentsDemo />} />
+        </Routes>
       </div>
 
       {/* START: routes */}

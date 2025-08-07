@@ -1,11 +1,13 @@
 // Uncomment this line to use CSS modules
 // import styles from './app.module.css';
 import NxWelcome from './nx-welcome';
-import { Ui } from '@./ui'; // Import from the shared UI library
-
+import { Ui } from '@mycompany/shared-ui';
+import { Mylib } from '@mycompany/mylib';
 import { Route, Routes, Link } from 'react-router-dom';
 
 export function App() {
+  console.log('Mylib loaded:', Mylib);
+  
   return (
     <div>
       <nav
