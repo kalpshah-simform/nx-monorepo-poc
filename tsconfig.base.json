@@ -19,8 +19,8 @@
     "customConditions": ["development"],
     "baseUrl": ".",
     "paths": {
-      "@mycompany/shared-ui": ["libs/shared/ui/src/index.ts"],
-      "@mycompany/mylib": ["libs/mylib/src/index.ts"]
+      "@mycompany/mylib": ["libs/mylib/src/index.ts"],
+      "@mycompany/shared-ui": ["libs/shared/ui/src/index.ts"]
     }
   }
 }

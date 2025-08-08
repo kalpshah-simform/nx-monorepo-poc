@@ -1,0 +1,7 @@
+[build]
+  command = "nx build admin-app"
+  publish = "dist/apps/admin-app"
+
+[dev]
+  command = "nx serve admin-app"
+  port = 4200

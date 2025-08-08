@@ -15,6 +15,7 @@
     "sharedGlobals": []
   },
   "plugins": [
+    "@my-plugin",
     {
       "plugin": "@nx/js/typescript",
       "options": {
@@ -110,6 +111,11 @@
       ],
       "dependsOn": ["^build"],
       "cache": true
+    },
+    "@nx/js:tsc": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
     }
   }
 }

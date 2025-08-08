@@ -1,0 +1,13 @@
+{
+  "name": "@mycompany/admin-app",
+  "projectType": "application",
+  "sourceRoot": "apps/admin-app/src",
+  "targets": {
+    "my-executor": {
+      "executor": "@my-plugin:my-executor",
+      "options": {
+        "project": "@mycompany/admin-app"
+      }
+    }
+  }
+}

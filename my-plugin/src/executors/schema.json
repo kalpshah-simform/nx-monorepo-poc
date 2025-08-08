@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "version": 2,
+  "title": "MyExecutor executor",
+  "description": "Executor that builds and serves a project",
+  "type": "object",
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "The name of the project to build and serve"
+    }
+  },
+  "required": ["project"]
+}
