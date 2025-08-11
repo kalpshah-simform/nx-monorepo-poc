@@ -2,7 +2,22 @@
   "name": "@./source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "build:all": "nx run-many -t build --all",
+    "build:web": "nx build @mycompany/web-app",
+    "build:admin": "nx build @mycompany/admin-app",
+    "build:libs": "nx run-many -t build --projects=@mycompany/shared-ui,@mycompany/mylib",
+    "serve:web": "nx serve @mycompany/web-app",
+    "serve:admin": "nx serve @mycompany/admin-app",
+    "test:all": "nx run-many -t test --all",
+    "lint:all": "nx run-many -t lint --all",
+    "deploy:web": "./deploy/scripts/deploy-web-app.sh",
+    "deploy:admin": "./deploy/scripts/deploy-admin-app.sh",
+    "deploy:setup-web": "cp deploy/netlify/web-app.toml netlify.toml",
+    "deploy:setup-admin": "cp deploy/netlify/admin-app.toml netlify.toml",
+    "clean": "nx reset",
+    "graph": "nx graph"
+  },
   "private": true,
   "dependencies": {
     "@module-federation/enhanced": "^0.17.0",

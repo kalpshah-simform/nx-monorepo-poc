@@ -1,7 +1,7 @@
-# Web App - Customer Website Deployment
+# Admin App - Dashboard Deployment
 [build]
-  command = "nx build @mycompany/web-app"
-  publish = "apps/web-app/dist"
+  command = "nx build @mycompany/admin-app"
+  publish = "apps/admin-app/dist"
 
 [build.environment]
   NODE_VERSION = "22"
@@ -11,16 +11,16 @@
   REACT_APP_ENV = "production"
   
 [context.production]
-  command = "nx build @mycompany/web-app --configuration=production"
+  command = "nx build @mycompany/admin-app --configuration=production"
 
-[context.staging]
-  command = "nx build @mycompany/web-app --configuration=staging"
-  
+[context.staging]  
+  command = "nx build @mycompany/admin-app --configuration=staging"
+
 # Development server for Netlify Dev
 [dev]
-  command = "nx serve @mycompany/web-app"
-  port = 4200
-  targetPort = 4200
+  command = "nx serve @mycompany/admin-app"
+  port = 4201
+  targetPort = 4201
 
 # Asset optimization
 [[headers]]
@@ -41,5 +41,12 @@
 # Redirects for SPA routing
 [[redirects]]
   from = "/*"
-  to = "/index.html"
+  to = "/index.html" 
   status = 200
+
+# Basic auth for admin (optional)
+# [[headers]]
+#   for = "/*"
+#   [headers.values]
+#     X-Frame-Options = "DENY"
+#     X-XSS-Protection = "1; mode=block"
