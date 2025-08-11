@@ -1,13 +1,13 @@
 [build]
-  command = "nx build @mycompany/admin-app"
-  publish = "apps/admin-app/dist"
+  command = "nx build @mycompany/web-app"
+  publish = "apps/web-app/dist"
 
 [build.environment]
   NODE_VERSION = "22"
   NPM_VERSION = "10"
 
 [dev]
-  command = "nx serve @mycompany/admin-app"
+  command = "nx serve @mycompany/web-app"
   port = 4201
 
 [[headers]]
