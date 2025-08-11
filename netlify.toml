@@ -3,7 +3,7 @@
   publish = "apps/admin-app/dist"
 
 [build.environment]
-  NODE_VERSION = "20"
+  NODE_VERSION = "18"
   NPM_VERSION = "10"
 
 [dev]

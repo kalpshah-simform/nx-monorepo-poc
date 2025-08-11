@@ -67,7 +67,6 @@
   "workspaces": [
     "apps/*",
     "libs/shared/*",
-    "libs/*",
-    "my-plugin"
+    "libs/*"
   ]
 }
