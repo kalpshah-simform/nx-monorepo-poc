@@ -11,7 +11,7 @@
   REACT_APP_ENV = "production"
   
 [context.production]
-  command = "nx build @mycompany/web-app --configuration=production"
+  command = "nx build @mycompany/web-app"
 
 [context.staging]
   command = "nx build @mycompany/web-app --configuration=staging"
