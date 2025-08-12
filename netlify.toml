@@ -14,10 +14,10 @@
   NPM_CONFIG_PROGRESS = "false"
   
 [context.production]
-  command = "npm install --legacy-peer-deps --no-audit --no-fund && npx nx build @mycompany/web-app --configuration=production"
+  command = "npm install --legacy-peer-deps --no-audit --no-fund && npx nx build @mycompany/web-app"
 
 [context.staging]
-  command = "npm install --legacy-peer-deps --no-audit --no-fund && npx nx build @mycompany/web-app --configuration=staging"
+  command = "npm install --legacy-peer-deps --no-audit --no-fund && npx nx build @mycompany/web-app"
   
 # Development server for Netlify Dev
 [dev]
