@@ -1,7 +1,7 @@
-# Web App - Customer Website Deployment
+# Admin App - Dashboard Deployment
 [build]
-  command = "./netlify-build.sh"
-  publish = "apps/web-app/dist"
+  command = "npm install --legacy-peer-deps --no-audit --no-fund && npx nx build @mycompany/admin-app"
+  publish = "apps/admin-app/dist"
 
 [build.environment]
   NODE_VERSION = "22"
@@ -12,20 +12,18 @@
   # Optimize npm install
   NPM_CONFIG_PREFER_OFFLINE = "true"
   NPM_CONFIG_PROGRESS = "false"
-  # Disable automatic dependency installation
-  NPM_CONFIG_PRODUCTION = "false"
   
 [context.production]
-  command = "./netlify-build.sh"
+  command = "npm install --legacy-peer-deps --no-audit --no-fund && npx nx build @mycompany/admin-app"
 
-[context.staging]
-  command = "./netlify-build.sh"
-  
+[context.staging]  
+  command = "npm install --legacy-peer-deps --no-audit --no-fund && npx nx build @mycompany/admin-app"
+
 # Development server for Netlify Dev
 [dev]
-  command = "npx nx serve @mycompany/web-app"
-  port = 4200
-  targetPort = 4200
+  command = "npx nx serve @mycompany/admin-app"
+  port = 4201
+  targetPort = 4201
 
 # Asset optimization
 [[headers]]
@@ -46,5 +44,14 @@
 # Redirects for SPA routing
 [[redirects]]
   from = "/*"
-  to = "/index.html"
+  to = "/index.html" 
   status = 200
+
+# Security headers for admin app
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
