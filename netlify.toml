@@ -1,22 +1,20 @@
 # Web App - Customer Website Deployment
 [build]
-  command = "./build-web-app.sh"
+  command = "npm install --legacy-peer-deps --no-audit --no-fund && npx nx build @mycompany/web-app"
   publish = "apps/web-app/dist"
 
 [build.environment]
-  NODE_VERSION = "20"
+  NODE_VERSION = "22"
   NPM_VERSION = "10"
   # Production environment variables
   NODE_ENV = "production"
   REACT_APP_ENV = "production"
-  # Disable automatic dependency installation
-  NPM_FLAGS = "--legacy-peer-deps"
   
 [context.production]
-  command = "./build-web-app.sh"
+  command = "npm install --legacy-peer-deps --no-audit --no-fund && npx nx build @mycompany/web-app --configuration=production"
 
 [context.staging]
-  command = "./build-web-app.sh"
+  command = "npm install --legacy-peer-deps --no-audit --no-fund && npx nx build @mycompany/web-app --configuration=staging"
   
 # Development server for Netlify Dev
 [dev]

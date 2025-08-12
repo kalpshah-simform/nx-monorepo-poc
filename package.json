@@ -22,12 +22,12 @@
   "dependencies": {
     "@module-federation/enhanced": "^0.17.0",
     "@nx/devkit": "21.3.9",
-    "@react-router/node": "^7.2.0",
-    "@react-router/serve": "^7.2.0",
+    "@react-router/node": "7.2.0",
+    "@react-router/serve": "7.2.0",
     "isbot": "^4.4.0",
     "react": "19.0.0",
     "react-dom": "19.0.0",
-    "react-router": "^7.2.0",
+    "react-router": "7.2.0",
     "react-router-dom": "6.29.0"
   },
   "devDependencies": {
@@ -42,7 +42,7 @@
     "@nx/vite": "21.3.9",
     "@nx/web": "21.3.9",
     "@nx/workspace": "21.3.9",
-    "@react-router/dev": "^7.2.0",
+    "@react-router/dev": "7.2.0",
     "@swc-node/register": "~1.9.1",
     "@swc/cli": "~0.6.0",
     "@swc/core": "~1.5.7",
