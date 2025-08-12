@@ -1,6 +1,6 @@
 # Web App - Customer Website Deployment
 [build]
-  command = "npm install --legacy-peer-deps --no-audit --no-fund && npx nx build @mycompany/web-app"
+  command = "./netlify-build.sh"
   publish = "apps/web-app/dist"
 
 [build.environment]
@@ -12,12 +12,14 @@
   # Optimize npm install
   NPM_CONFIG_PREFER_OFFLINE = "true"
   NPM_CONFIG_PROGRESS = "false"
+  # Disable automatic dependency installation
+  NPM_CONFIG_PRODUCTION = "false"
   
 [context.production]
-  command = "npm install --legacy-peer-deps --no-audit --no-fund && npx nx build @mycompany/web-app"
+  command = "./netlify-build.sh"
 
 [context.staging]
-  command = "npm install --legacy-peer-deps --no-audit --no-fund && npx nx build @mycompany/web-app"
+  command = "./netlify-build.sh"
   
 # Development server for Netlify Dev
 [dev]

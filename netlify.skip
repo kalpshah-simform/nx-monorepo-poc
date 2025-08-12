@@ -1,0 +1,2 @@
+# This file tells Netlify to skip automatic dependency installation
+# We handle it manually in our build script
