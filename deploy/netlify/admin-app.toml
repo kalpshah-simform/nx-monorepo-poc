@@ -1,6 +1,6 @@
 # Admin App - Dashboard Deployment
 [build]
-  command = "nx build @mycompany/admin-app"
+  command = "npm install --legacy-peer-deps --no-audit --no-fund && npx nx build @mycompany/admin-app"
   publish = "apps/admin-app/dist"
 
 [build.environment]
@@ -9,16 +9,19 @@
   # Production environment variables
   NODE_ENV = "production"
   REACT_APP_ENV = "production"
+  # Optimize npm install
+  NPM_CONFIG_PREFER_OFFLINE = "true"
+  NPM_CONFIG_PROGRESS = "false"
   
 [context.production]
-  command = "nx build @mycompany/admin-app --configuration=production"
+  command = "npm install --legacy-peer-deps --no-audit --no-fund && npx nx build @mycompany/admin-app --configuration=production"
 
 [context.staging]  
-  command = "nx build @mycompany/admin-app --configuration=staging"
+  command = "npm install --legacy-peer-deps --no-audit --no-fund && npx nx build @mycompany/admin-app --configuration=staging"
 
 # Development server for Netlify Dev
 [dev]
-  command = "nx serve @mycompany/admin-app"
+  command = "npx nx serve @mycompany/admin-app"
   port = 4201
   targetPort = 4201
 
@@ -44,9 +47,11 @@
   to = "/index.html" 
   status = 200
 
-# Basic auth for admin (optional)
-# [[headers]]
-#   for = "/*"
-#   [headers.values]
-#     X-Frame-Options = "DENY"
-#     X-XSS-Protection = "1; mode=block"
+# Security headers for admin app
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

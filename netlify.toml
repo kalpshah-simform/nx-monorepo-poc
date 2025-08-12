@@ -9,6 +9,9 @@
   # Production environment variables
   NODE_ENV = "production"
   REACT_APP_ENV = "production"
+  # Optimize npm install
+  NPM_CONFIG_PREFER_OFFLINE = "true"
+  NPM_CONFIG_PROGRESS = "false"
   
 [context.production]
   command = "npm install --legacy-peer-deps --no-audit --no-fund && npx nx build @mycompany/web-app --configuration=production"

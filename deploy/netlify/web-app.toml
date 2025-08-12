@@ -1,6 +1,6 @@
 # Web App - Customer Website Deployment
 [build]
-  command = "nx build @mycompany/web-app"
+  command = "npm install --legacy-peer-deps --no-audit --no-fund && npx nx build @mycompany/web-app"
   publish = "apps/web-app/dist"
 
 [build.environment]
@@ -9,16 +9,19 @@
   # Production environment variables
   NODE_ENV = "production"
   REACT_APP_ENV = "production"
+  # Optimize npm install
+  NPM_CONFIG_PREFER_OFFLINE = "true"
+  NPM_CONFIG_PROGRESS = "false"
   
 [context.production]
-  command = "nx build @mycompany/web-app --configuration=production"
+  command = "npm install --legacy-peer-deps --no-audit --no-fund && npx nx build @mycompany/web-app --configuration=production"
 
 [context.staging]
-  command = "nx build @mycompany/web-app --configuration=staging"
+  command = "npm install --legacy-peer-deps --no-audit --no-fund && npx nx build @mycompany/web-app --configuration=staging"
   
 # Development server for Netlify Dev
 [dev]
-  command = "nx serve @mycompany/web-app"
+  command = "npx nx serve @mycompany/web-app"
   port = 4200
   targetPort = 4200
 

@@ -16,7 +16,7 @@ npm ci --legacy-peer-deps
 
 # Build the application
 echo "🏗️ Building application..."
-npx nx build $APP_NAME --configuration=production
+npx nx build $APP_NAME
 
 # Copy netlify config
 echo "📋 Copying Netlify configuration..."
