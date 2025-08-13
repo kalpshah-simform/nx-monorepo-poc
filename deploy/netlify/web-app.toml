@@ -8,8 +8,7 @@
   NPM_VERSION = "10"
   # App-specific build configuration
   NX_APP_NAME = "web-app"
-  # Production environment variables
-  NODE_ENV = "production"
+  # Environment variables for build (not NODE_ENV=production to allow all deps)
   REACT_APP_ENV = "production"
   # Optimize npm install
   NPM_CONFIG_PREFER_OFFLINE = "true"
