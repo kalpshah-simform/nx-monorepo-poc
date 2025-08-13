@@ -56,8 +56,21 @@ fi
 
 echo "✅ Nx workspace verified"
 
+# Debug: Show installed Nx packages
+echo "🔍 Checking installed Nx packages..."
+ls node_modules/@nx/ 2>/dev/null | head -10 || echo "No @nx packages found"
+
+# Debug: Check if the problematic plugin exists
+if [ -d "node_modules/@nx/js" ]; then
+    echo "✅ @nx/js package found"
+    ls node_modules/@nx/js/ | head -5
+else
+    echo "❌ @nx/js package not found"
+fi
+
 echo "🏗️ Building ${APP_NAME}..."
-npx nx build @mycompany/${APP_NAME} --verbose
+# Use the local nx binary instead of npx to avoid version conflicts
+./node_modules/.bin/nx build @mycompany/${APP_NAME} --verbose
 
 echo "✅ Build completed!"
 
