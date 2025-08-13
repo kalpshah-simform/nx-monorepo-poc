@@ -7,6 +7,12 @@ echo "   Node version: $(node --version)"
 echo "   NPM version: $(npm --version)"
 echo "   PWD: $(pwd)"
 
+# Determine which app to build based on environment variable or netlify.toml
+APP_NAME=${NX_APP_NAME:-"web-app"}
+BUILD_DIR="apps/${APP_NAME}/dist"
+
+echo "🎯 Building app: ${APP_NAME}"
+
 # Check if package.json exists
 if [ ! -f "package.json" ]; then
     echo "❌ package.json not found!"
@@ -24,17 +30,17 @@ npm install --legacy-peer-deps --no-audit --no-fund
 
 echo "✅ Dependencies installed successfully"
 
-echo "🏗️ Building web app..."
-npx nx build @mycompany/web-app --verbose
+echo "🏗️ Building ${APP_NAME}..."
+npx nx build @mycompany/${APP_NAME} --verbose
 
 echo "✅ Build completed!"
 
 # Verify build output
-if [ -d "apps/web-app/dist" ]; then
-    echo "✅ Build output directory exists"
-    ls -la apps/web-app/dist/
+if [ -d "${BUILD_DIR}" ]; then
+    echo "✅ Build output directory exists: ${BUILD_DIR}"
+    ls -la "${BUILD_DIR}/"
 else
-    echo "❌ Build output directory not found!"
+    echo "❌ Build output directory not found: ${BUILD_DIR}"
     exit 1
 fi
 

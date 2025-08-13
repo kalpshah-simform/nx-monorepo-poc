@@ -1,11 +1,13 @@
 # Admin App - Dashboard Deployment
 [build]
-  command = "npm install --legacy-peer-deps --no-audit --no-fund && npx nx build @mycompany/admin-app"
+  command = "./netlify-build.sh"
   publish = "apps/admin-app/dist"
 
 [build.environment]
   NODE_VERSION = "22"
   NPM_VERSION = "10"
+  # App-specific build configuration
+  NX_APP_NAME = "admin-app"
   # Production environment variables
   NODE_ENV = "production"
   REACT_APP_ENV = "production"
@@ -14,10 +16,10 @@
   NPM_CONFIG_PROGRESS = "false"
   
 [context.production]
-  command = "npm install --legacy-peer-deps --no-audit --no-fund && npx nx build @mycompany/admin-app"
+  command = "./netlify-build.sh"
 
 [context.staging]  
-  command = "npm install --legacy-peer-deps --no-audit --no-fund && npx nx build @mycompany/admin-app"
+  command = "./netlify-build.sh"
 
 # Development server for Netlify Dev
 [dev]
