@@ -19,16 +19,42 @@ if [ ! -f "package.json" ]; then
     exit 1
 fi
 
-# Clean any existing node_modules to avoid conflicts
+# Clean any existing node_modules and package-lock.json to avoid conflicts
 if [ -d "node_modules" ]; then
     echo "🧹 Cleaning existing node_modules..."
     rm -rf node_modules
 fi
 
-echo "📦 Installing dependencies..."
+if [ -f "package-lock.json" ]; then
+    echo "🧹 Cleaning package-lock.json..."
+    rm -f package-lock.json
+fi
+
+echo "📦 Installing dependencies with fresh lockfile..."
 npm install --legacy-peer-deps --no-audit --no-fund
 
 echo "✅ Dependencies installed successfully"
+
+# Verify Nx installation and workspace
+echo "🔍 Verifying Nx installation..."
+if [ -f "node_modules/.bin/nx" ]; then
+    echo "✅ Nx binary found at: node_modules/.bin/nx"
+    NX_VERSION=$(./node_modules/.bin/nx --version 2>/dev/null || echo "version check failed")
+    echo "📋 Using Nx version: ${NX_VERSION}"
+else
+    echo "❌ Nx binary not found in node_modules/.bin/"
+    echo "📋 Available binaries:"
+    ls -la node_modules/.bin/ | grep -E "(nx|@nx)" || echo "No Nx-related binaries found"
+    exit 1
+fi
+
+# Verify workspace configuration
+if [ ! -f "nx.json" ]; then
+    echo "❌ nx.json not found! This doesn't appear to be an Nx workspace."
+    exit 1
+fi
+
+echo "✅ Nx workspace verified"
 
 echo "🏗️ Building ${APP_NAME}..."
 npx nx build @mycompany/${APP_NAME} --verbose
