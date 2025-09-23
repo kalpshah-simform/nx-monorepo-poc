@@ -1,13 +1,13 @@
-# Admin App - Dashboard Deployment
+# Web App - Customer Website Deployment
 [build]
   command = "./netlify-build.sh"
-  publish = "apps/admin-app/dist"
+  publish = "apps/web-app/dist"
 
 [build.environment]
   NODE_VERSION = "22"
   NPM_VERSION = "10"
   # App-specific build configuration
-  NX_APP_NAME = "admin-app"
+  NX_APP_NAME = "web-app"
   # Environment variables for build (not NODE_ENV=production to allow all deps)
   REACT_APP_ENV = "production"
   # Optimize npm install
@@ -17,14 +17,14 @@
 [context.production]
   command = "./netlify-build.sh"
 
-[context.staging]  
+[context.staging]
   command = "./netlify-build.sh"
 
 # Development server for Netlify Dev
 [dev]
-  command = "npx nx serve @mycompany/admin-app"
-  port = 4201
-  targetPort = 4201
+  command = "npx nx serve @mycompany/web-app"
+  port = 4200
+  targetPort = 4200
 
 # Asset optimization
 [[headers]]
@@ -45,14 +45,5 @@
 # Redirects for SPA routing
 [[redirects]]
   from = "/*"
-  to = "/index.html" 
+  to = "/index.html"
   status = 200
-
-# Security headers for admin app
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Frame-Options = "DENY"
-    X-XSS-Protection = "1; mode=block"
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin"

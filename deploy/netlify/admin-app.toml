@@ -17,7 +17,7 @@
 [context.production]
   command = "./netlify-build.sh"
 
-[context.staging]  
+[context.staging]
   command = "./netlify-build.sh"
 
 # Development server for Netlify Dev
@@ -45,7 +45,7 @@
 # Redirects for SPA routing
 [[redirects]]
   from = "/*"
-  to = "/index.html" 
+  to = "/index.html"
   status = 200
 
 # Security headers for admin app

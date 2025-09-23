@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# 🚀 Deployment Script for Admin App  
+# 🚀 Deployment Script for Admin App
 # This script builds and deploys the admin-app to Netlify
 
 set -e  # Exit on any error
@@ -27,7 +27,7 @@ echo "📁 Output directory: apps/admin-app/dist"
 echo "⚙️ Config file: netlify.toml"
 
 # Optional: Run tests before deployment
-# echo "🧪 Running tests..."  
+# echo "🧪 Running tests..."
 # npx nx test $APP_NAME
 
 echo "🚀 Deployment ready!"

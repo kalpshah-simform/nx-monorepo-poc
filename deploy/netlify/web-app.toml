@@ -19,7 +19,7 @@
 
 [context.staging]
   command = "./netlify-build.sh"
-  
+
 # Development server for Netlify Dev
 [dev]
   command = "npx nx serve @mycompany/web-app"
