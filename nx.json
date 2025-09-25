@@ -90,5 +90,8 @@
       "inputs": ["production", "^production"]
     }
   },
+  "sync": {
+    "applyChanges": true
+  },
   "nxCloudId": "6895db04e7d4ba1786546b47"
 }
