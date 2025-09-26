@@ -1,78 +1,50 @@
-// Uncomment this line to use CSS modules
-// import styles from './app.module.css';
-import NxWelcome from './nx-welcome';
-import { Ui } from '@mycompany/shared-ui'; // Import from the shared UI library
-import ComponentsDemo from './components-demo';
-
-import { Route, Routes, Link } from 'react-router-dom';
+import './app.css';
+import { CommonLayout, CommonRoutes, NxWelcome, ComponentsDemo } from '@mycompany/shared-ui';
 
 export function App() {
+  const navItems = [
+    { path: '/', label: 'Home' },
+    { path: '/about', label: 'About' },
+    { path: '/dashboard', label: 'Dashboard' },
+    { path: '/components', label: 'Components Demo' },
+  ];
+
+  const customRoutes = [
+    {
+      path: "/",
+      element: (
+        <div>
+          <NxWelcome title="@./web-app" />
+        </div>
+      )
+    },
+    {
+      path: "/about",
+      element: (
+        <div>About page - Web app</div>
+      )
+    },
+    {
+      path: "/dashboard",
+      element: (
+        <div>Dashboard page - Web app</div>
+      )
+    },
+    {
+      path: "/components",
+      element: <ComponentsDemo />
+    }
+  ];
+
   return (
-    <div>
-      <nav style={{ padding: '1rem', borderBottom: '1px solid #ccc' }}>
-        <Link to="/" style={{ marginRight: '1rem' }}>
-          Home
-        </Link>
-        <Link to="/about" style={{ marginRight: '1rem' }}>
-          About
-        </Link>
-        <Link to="/dashboard" style={{ marginRight: '1rem' }}>
-          Dashboard
-        </Link>
-        <Link to="/components" style={{ marginRight: '1rem' }}>
-          Components Demo
-        </Link>
-      </nav>
-
-      <div style={{ padding: '1rem' }}>
-        <Routes>
-          <Route path="/" element={
-            <div>
-              <NxWelcome title="@./web-app" />
-              <Ui /> {/* Use the shared UI component */}
-            </div>
-          } />
-          <Route path="/components" element={<ComponentsDemo />} />
-        </Routes>
-      </div>
-
-      {/* START: routes */}
-      {/* These routes and navigation have been generated for you */}
-      {/* Feel free to move and update them to fit your needs */}
-      <br />
-      <hr />
-      <br />
-      <div role="navigation">
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/page-2">Page 2</Link>
-          </li>
-        </ul>
-      </div>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <div>
-              This is the generated root route.{' '}
-              <Link to="/page-2">Click here for page 2.</Link>
-            </div>
-          }
-        />
-        <Route
-          path="/page-2"
-          element={
-            <div>
-              <Link to="/">Click here to go back to root page.</Link>
-            </div>
-          }
-        />
-      </Routes>
-      {/* END: routes */}
-    </div>
+    <CommonLayout 
+      title="Web Application" 
+      navItems={navItems}
+      backgroundColor="#f0f8ff"
+      borderColor="#007acc"
+    >
+      <CommonRoutes routes={customRoutes} />
+    </CommonLayout>
   );
 }
 
