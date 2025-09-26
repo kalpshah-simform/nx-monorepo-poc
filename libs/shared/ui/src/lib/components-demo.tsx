@@ -1,7 +1,9 @@
-import { Button, Card, Input } from '@mycompany/shared-ui';
+import { Button } from './button';
+import { Card } from './card';
+import { Input } from './input';
 import { useState } from 'react';
 
-export default function ComponentsDemo() {
+export function ComponentsDemo() {
   const [inputValue, setInputValue] = useState('');
   const [email, setEmail] = useState('');
 
@@ -24,7 +26,7 @@ export default function ComponentsDemo() {
         </div>
         
         <Button 
-          variant="primary" 
+          variant="primary"
           onClick={() => alert('Button clicked!')}
         >
           Click Me!
