@@ -5,13 +5,13 @@ This repository demonstrates a modern Nx monorepo setup for scalable React appli
 
 ## 2. Live Links
 
-### Production (Vercel - Main Branch)
-- [Web App](https://web-app-kalpshah.vercel.app/)
-- [Admin App](https://admin-app-kalpshah.vercel.app/)
+### Single-Branch Deployment (Vercel - Main Branch)
+- [Web App](https://web-app-kalpshah.vercel.app/) - Deployed from `main` branch
+- [Admin App](https://admin-app-kalpshah.vercel.app/) - Deployed from `main` branch
 
-### Staging (Netlify - Branch Deploys)
-- [Web App Staging](https://remote-app-kalpshah.netlify.app) - `remote-app` branch
-- [Admin App Staging](https://admin-app-kalpshah.netlify.app) - `admin-app` branch
+### Multi-Branch Deployment (Netlify - Dedicated Branches)
+- [Web App](https://remote-app-kalpshah.netlify.app) - Deployed from `remote-app` branch
+- [Admin App](https://admin-app-kalpshah.netlify.app) - Deployed from `admin-app` branch
 
 ## 3. Project Structure
 ```
@@ -133,44 +133,86 @@ npm run deploy:setup-admin && npm run deploy:admin
 ```
 ---
 
-### Hybrid Deployment Strategy: Vercel + Netlify
+### Dual Deployment Strategy: Single-Branch and Multi-Branch
 
-We use a **dual-platform deployment strategy** to optimize for production reliability and staging flexibility.
+This project demonstrates two different deployment strategies using **Vercel** and **Netlify**. The goal is to show how monorepo applications can be deployed in different ways based on team size and release requirements.
 
-**Deployment Architecture:**
-- **Production (Vercel)**: `main` branch automatically deploys both web-app and admin-app to Vercel
-- **Staging (Netlify)**: Feature branches deploy to Netlify for preview testing
-  - `remote-app` branch → Web App staging
-  - `admin-app` branch → Admin App staging
+---
+
+#### Strategy 1: Single-Branch Deployment (Vercel)
+
+In this approach, all applications are maintained in a single branch.
+
+**How it works:**
+- All applications live in the `main` branch  
+- Each app (web app and admin app) is deployed independently on Vercel  
+- One shared codebase and commit history  
+- Shared libraries are updated in one place  
 
 **Benefits:**
-- ✅ **Zero-downtime deployments**: Vercel's atomic deployments ensure seamless updates
-- ✅ **Instant rollbacks**: Deployment history available for quick recovery
-- ✅ **Branch previews**: Test features on Netlify before merging to main
-- ✅ **Parallel builds**: Both apps build and deploy simultaneously
-- ✅ **Smart caching**: Nx + platform caches reduce build times
-- ✅ **Cost-effective**: Free tiers support our scale
+- Simple and easy to manage with only one branch  
+- All applications stay in sync  
+- No need to merge or sync multiple branches  
+- Clear and centralized version history  
 
-**Push Flow:**
+**Deployment Flow:**
+
 ```
-main branch push
-  ↓
-Vercel auto-deploys (main triggers)
-  ↓
-Both apps live at production URLs
-
-remote-app branch push
-  ↓
-Netlify deploys to staging
-  ↓
-Web app available at staging URL
-
-admin-app branch push
-  ↓
-Netlify deploys to staging
-  ↓
-Admin app available at staging URL
+Push to main branch
+↓
+Vercel auto deployment
+↓
+Web App → web-app-kalpshah.vercel.app
+Admin App → admin-app-kalpshah.vercel.app
 ```
+
+---
+
+#### Strategy 2: Multi-Branch Deployment (Netlify)
+
+In this approach, each application has its own dedicated branch and deployment pipeline.
+
+**How it works:**
+- Each app is developed and deployed from its own branch  
+  - `remote-app` branch for the Web App  
+  - `admin-app` branch for the Admin App  
+- Applications have independent release cycles  
+- Separate deployment pipelines on Netlify  
+
+**Benefits:**
+- Applications can be released independently  
+- Teams can work on their own apps without conflicts  
+- Changes in one app do not affect others  
+- Easier rollback for a single application  
+
+**Deployment Flow:**
+
+```
+Push to remote-app branch
+↓
+Netlify auto deployment
+↓
+Web App → remote-app-kalpshah.netlify.app
+
+Push to admin-app branch
+↓
+Netlify auto deployment
+↓
+Admin App → admin-app-kalpshah.netlify.app
+```
+
+---
+
+#### Why Use Both Strategies?
+
+Using both strategies helps teams understand different deployment models.
+
+- Single-branch deployment works well for small teams and tightly coupled applications  
+- Multi-branch deployment is useful for larger teams or independent release cycles  
+- Helps compare trade-offs between simplicity and flexibility  
+- Allows the deployment strategy to evolve as the project grows  
+
+This setup provides flexibility and helps choose the right deployment approach based on project and team needs.
 
 ---
 
